@@ -9,9 +9,9 @@
 		<span class="glyphicon glyphicon-edit"></span>
 		Editar
 	</a>
-	<a href="{{ url('estudiantes/'.$estudiante->id.'/delete') }}">
+	<a href="{{ url('estudiantes/'.$estudiante->id.'/inactivate') }}">
 		<span class="glyphicon glyphicon-trash"></span>
-		Borrar
+		Inactivar
 	</a>
 	<p>&Uacute;ltima actualizaci&oacute;n: {{ $estudiante->updated_at->diffForHumans() }}</p>
 @stop

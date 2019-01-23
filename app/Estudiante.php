@@ -20,19 +20,21 @@ class Estudiante extends Model {
 		'grupo_sanguineo',
 		'factor_rh',
 		'observaciones',
-		'lugar_nacimiento',
+		'municipio_id',
 		'temas_interes',
 		'estado'
 	];
-	
-	/**
-     * @var App\Enums\GrupoSanguineoEnum
-     */
-    public $grupo_sanguineo;
 
 	private $rules = [
 		'nombre' => 'required',
-		'apellido' => 'required'
+		'apellido' => 'required',
+		'numero_documento' => 'required',
+		'edad' => 'required',
+		'fecha_nacimiento' => 'required',
+		'municipio' => 'required',
+		'curso' => 'required',
+		'temas_interes' => 'required',
+		'grupo_sanguineo' => 'required'
 	];
 	
 	public function tipoDocumento() {
