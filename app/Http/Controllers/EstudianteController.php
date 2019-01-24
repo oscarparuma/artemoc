@@ -68,7 +68,6 @@ class EstudianteController extends Controller
         );
         $validator = Validator::make(Request::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
             return Redirect::to('estudiantes/create')
                 ->withErrors($validator)
@@ -93,18 +92,10 @@ class EstudianteController extends Controller
             $estudiante->estado = "A"; // Activo
             $estudiante->save();
 
-            /*$estudiantes = Estudiante::where('estado', 'A')
-                                    ->orderBy('nombre','asc')
-                                    ->orderBy('apellido','asc')
-                                    ->simplePaginate(10);*/
-
             // redirect
             Session::flash('message', 'Estudiante registrado!');
             return redirect()->action('EstudianteController@index')
                             ->with('success', 'Estudiante registrado!');
-            /*return view('estudiantes.index')
-                    ->with('estudiantes', $estudiantes)
-                    ->with('success', 'Estudiante registrado!');*/
         }
     }
 
@@ -155,25 +146,42 @@ class EstudianteController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'numero_documento' => 'required',
+            'tipo_documento_id' => 'required',
             'edad' => 'required|numeric',
             'fecha_nacimiento' => 'required',
             'municipio' => 'required',
-            'curso' => 'required',
-            'temas_interes' => 'required'
+            'curso' => 'required|numeric',
+            'temas_interes' => 'required',
+            'eps_id' => 'required',
+            'colegio_id' => 'required',
+            'grupo_sanguineo' => 'required',
+            'factor_rh' => 'required',
+            'temas_interes' => 'required',
+            'observaciones' => 'required'
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Request::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
             return Redirect::to('estudiantes/' . $id . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
             // store
-            $estudiante = Estudiante::find($id);
-            $estudiante->name       = Input::get('name');
-            $estudiante->email      = Input::get('email');
-            $estudiante->nerd_level = Input::get('nerd_level');
+            $estudiante = new Estudiante;
+            $estudiante->nombre = Request::get('nombre');
+            $estudiante->apellido = Request::get('apellido');
+            $estudiante->tipo_documento_id = Request::get('tipo_documento_id');
+            $estudiante->numero_documento = Request::get('numero_documento');
+            $estudiante->eps_id = Request::get('eps_id');
+            $estudiante->edad = Request::get('edad');
+            $estudiante->fecha_nacimiento = Carbon::parse(Request::get('fecha_nacimiento'));
+            $estudiante->curso = Request::get('curso');
+            $estudiante->colegio_id = Request::get('colegio_id');
+            $estudiante->grupo_sanguineo = Request::get('grupo_sanguineo');
+            $estudiante->factor_rh = Request::get('factor_rh');
+            $estudiante->observaciones = Request::get('observaciones');
+            $estudiante->municipio_id = Request::get('municipio');
+            $estudiante->temas_interes = Request::get('temas_interes');
             $estudiante->save();
 
             // redirect
