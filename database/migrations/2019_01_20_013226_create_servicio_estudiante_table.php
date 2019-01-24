@@ -27,7 +27,7 @@ class CreateServicioEstudianteTable extends Migration
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->string('dias', 15);
-			$table->char('estado', 1);
+			$table->char('estado', 1)->default('A');
             $table->timestamps();
         });
     }

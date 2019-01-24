@@ -32,7 +32,7 @@ class CreateEstudianteTable extends Migration
 			$table->string('observaciones', 100);
 			$table->string('lugar_nacimiento', 45);
 			$table->string('temas_interes', 100);
-			$table->char('estado', 1);
+			$table->char('estado', 1)->default('A');
             $table->timestamps();
         });
     }
