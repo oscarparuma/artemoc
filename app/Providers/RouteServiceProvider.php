@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Providers;
+namespace Artemoc\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -14,18 +15,17 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = 'Artemoc\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
         //
-
-        parent::boot();
+        parent::boot($router);
     }
 
     /**
