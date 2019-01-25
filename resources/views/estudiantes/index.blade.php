@@ -50,28 +50,37 @@
 							<!-- we will also add show, edit, and delete buttons -->
 							<td class="col-md-4 form-group">
 
-								<div class="btn-group">
-									<!-- show the estudiante (uses the show method found at GET /estudiantes/{id} -->
-									<div class="col-md-2 form-controls">
-										<a class="btn btn-small btn-warning" href="{{ URL::to('estudiantes/' . $estudiante->id) }}">Ver</a>
-									</div>
+								<div class="btn-group-vertical">
+									<div class="btn-group">
+										<!-- show the estudiante (uses the show method found at GET /estudiantes/{id} -->
+										<div class="col-md-4 form-controls">
+											<a class="btn btn-small btn-warning" href="{{ URL::to('estudiantes/' . $estudiante->id) }}">Ver</a>
+										</div>
+										
+										<!-- edit this estudiante (uses the edit method found at GET /estudiantes/{id}/edit -->
+										<div class="col-md-4 form-controls">
+											<a class="btn btn-small btn-info" href="{{ URL::to('estudiantes/' . $estudiante->id . '/edit') }}">Editar</a>
+										</div>
 
-									<!-- edit this estudiante (uses the edit method found at GET /estudiantes/{id}/edit -->
-									<div class="col-md-3 form-controls">
-										<a class="btn btn-small btn-info" href="{{ URL::to('estudiantes/' . $estudiante->id . '/edit') }}">Editar</a>
+										<!-- inactivate the estudiante (uses the inactivate method found at PATCH /estudiantes/{id}/inactivate -->
+										<div class="col-md-4 form-controls">
+											{{ Form::open(array('url' => 'estudiantes/' . $estudiante->id . '/inactivate', 'class' => 'pull-right')) }}
+												{{ Form::hidden('_method', 'PATCH') }}
+												{{ Form::submit('Inactivar', array('class' => 'btn btn-small btn-danger')) }}
+											{{ Form::close() }}
+										</div>
 									</div>
+									<div>&nbsp;</div>
+									<div class="btn-group">
+										<!-- Asociar un estudiante a uno o más acudientes -->
+										<div class="col-md-6 form-controls">
+											<a class="btn btn-small btn-primary" href="{{ URL::to('acudientes/estudiante/' . $estudiante->id) }}">Acudientes</a>
+										</div>
 
-									<!-- Asociar un estudiante a uno o más servicios -->
-									<div class="col-md-3 form-controls">
-										<a class="btn btn-small btn-success" href="{{ URL::to('serviciosestudiantes/' . $estudiante->id) }}">Servicios</a>
-									</div>
-
-									<!-- inactivate the estudiante (uses the inactivate method found at PATCH /estudiantes/{id}/inactivate -->
-									<div class="col-md-4 form-controls">
-										{{ Form::open(array('url' => 'estudiantes/' . $estudiante->id . '/inactivate', 'class' => 'pull-right')) }}
-											{{ Form::hidden('_method', 'PATCH') }}
-											{{ Form::submit('Inactivar', array('class' => 'btn btn-small btn-danger')) }}
-										{{ Form::close() }}
+										<!-- Asociar un estudiante a uno o más servicios -->
+										<div class="col-md-6 form-controls">
+											<a class="btn btn-small btn-success" href="{{ URL::to('serviciosestudiantes/' . $estudiante->id) }}">Servicios</a>
+										</div>
 									</div>
 								</div>
 
