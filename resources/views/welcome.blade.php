@@ -86,10 +86,11 @@
 
                 <div class="links">
                     <a href="/estudiantes">Estudiantes</a>
+                    <a href="/acudientes">Acudientes</a>
+                    <a href="/colaboradores">Colaboradores</a>
                     <a href="/servicios">Servicios</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="/Recaudo">Recaudo</a>
+                    <a href="/Egresos">Egresos</a>
                     <a href="https://emocionarte.com.co" target="_blank">Emocionarte</a>
                 </div>
             </div>
