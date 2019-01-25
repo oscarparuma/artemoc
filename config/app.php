@@ -165,15 +165,21 @@ return [
         /*
          * Package Service Providers...
          */
+		Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Artemoc\Providers\AppServiceProvider::class,
+        Artemoc\Providers\AuthServiceProvider::class,
+        // Artemoc\Providers\BroadcastServiceProvider::class,
+        Artemoc\Providers\EventServiceProvider::class,
+        Artemoc\Providers\RouteServiceProvider::class,
+
+        /*
+         * LARAVEL-DEBUGBAR
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -204,8 +210,10 @@ return [
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
+		'Form' => Collective\Html\FormFacade::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'HTML' => Collective\Html\HtmlFacade::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -223,6 +231,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
