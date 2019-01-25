@@ -49,6 +49,11 @@ class Estudiante extends Model {
 		return $this->belongsTo('Artemoc\EPS');
 	}
 	
+	public function acudientes() {
+		return $this->belongsToMany(Acudiente::class, 'acudiente_estudiante',
+									'estudiante_id', 'acudiente_id');
+    }
+
 	public function validate()
 	{
 		$v = \Validator::make($this->attributes, $this->rules);
