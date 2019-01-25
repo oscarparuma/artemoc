@@ -15,7 +15,7 @@
 		<!-- Jquery -->
 		<script src="{{ asset('js/jquery-3.1.0.js') }}"></script>
 		<!-- Bootstrap -->
-		<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}""></script>
+		<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 		<link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 
 		<script type="text/javascript" src="{{ asset('moment-2.24.0/moment.js') }}"></script>
