@@ -112,6 +112,21 @@ Route::post('serviciosestudiantes/{estudianteId}', 'ServicioEstudianteController
 Route::get('serviciosestudiantes/servicio/{id}', 'ServicioEstudianteController@show');
 Route::get('serviciosestudiantes/{id}/edit', 'ServicioEstudianteController@edit');
 Route::patch('serviciosestudiantes/{id}/inactivate', 'ServicioEstudianteController@inactivate');
+Route::get('serviciosestudiantes/getservicios/{estudianteId}', 'ServicioEstudianteController@findServiciosWithEstudianteID');
+
+// Colaboradores
+Route::resource('colaboradores', 'ColaboradorController');
+
+// Contratos Colaboradores
+Route::get('contratos/colaborador/{colaboradorId}', 'ContratoColaboradorController@index');
+Route::get('contratos/colaborador/{colaboradorId}/create', 'ContratoColaboradorController@create');
+Route::post('contratos/colaborador/{colaboradorId}', 'ContratoColaboradorController@store');
+Route::get('contratos/colaborador/{id}', 'ContratoColaboradorController@show');
+Route::get('contratos/colaborador/{id}/edit', 'ContratoColaboradorController@edit');
+Route::patch('contratos/colaborador/{id}/inactivate', 'ContratoColaboradorController@inactivate');
+
+// Recaudo
+Route::resource('recaudos', 'RecaudoController');
 
 // Retorna los municipios asociados al departamento id
 Route::get('findMunicipioWithDepartamentoID/{id}','EstudianteController@findMunicipioWithDepartamentoID');
