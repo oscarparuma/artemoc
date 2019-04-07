@@ -89,8 +89,8 @@
                     <a href="/acudientes">Acudientes</a>
                     <a href="/colaboradores">Colaboradores</a>
                     <a href="/servicios">Servicios</a>
-                    <a href="/Recaudo">Recaudo</a>
-                    <a href="/Egresos">Egresos</a>
+                    <a href="/recaudos">Recaudos</a>
+                    <a href="/egresos">Egresos</a>
                     <a href="https://emocionarte.com.co" target="_blank">Emocionarte</a>
                 </div>
             </div>
