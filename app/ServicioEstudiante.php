@@ -45,6 +45,10 @@ class ServicioEstudiante extends Model
 		return $this->belongsTo('Artemoc\Servicio');
 	}
 	
+	public function recaudo() {
+		return $this->hasMany('Artemoc\Recaudo');
+	}
+
 	public function validate()
 	{
 		$v = Validator::make($this->attributes, $this->rules);
