@@ -112,4 +112,15 @@ class ServicioEstudianteController extends Controller
         return View::make('serviciosestudiantes.show')
                     ->with('servicioestudiante', $servicioestudiante);
     }
+
+    /**
+     * Servicios asociados a un estudiante
+     * 
+     * @param  integer  $id
+     * @return Servicio $servicios
+     */
+    public function findServiciosWithEstudianteID($id) {
+        $serviciosestudiantes = ServicioEstudiante::where('estudiante_id',$id)->with('servicio')->get();
+        return json_encode($serviciosestudiantes);
+    }
 }
