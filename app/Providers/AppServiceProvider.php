@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
             'Artemoc\Http\Views\Composers\ContratoColaboradorFormComposer');
         $view->composer('partials.forms.recaudo',
             'Artemoc\Http\Views\Composers\RecaudoFormComposer');
+        $view->composer('partials.forms.egreso',
+            'Artemoc\Http\Views\Composers\EgresoFormComposer');
     }
 
     /**
