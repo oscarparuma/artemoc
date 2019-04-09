@@ -128,5 +128,8 @@ Route::patch('contratos/colaborador/{id}/inactivate', 'ContratoColaboradorContro
 // Recaudo
 Route::resource('recaudos', 'RecaudoController');
 
+// Egreso
+Route::resource('egresos', 'EgresoController');
+
 // Retorna los municipios asociados al departamento id
 Route::get('findMunicipioWithDepartamentoID/{id}','EstudianteController@findMunicipioWithDepartamentoID');
