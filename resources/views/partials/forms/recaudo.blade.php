@@ -24,7 +24,11 @@
 		<div class="col-md-6 form-group">
 			{!! Form::label('estudiante_id', 'Estudiante', ['class'=>'required']) !!}
 			<div class="form-controls">
-				{!! Form::select('estudiante_id', collect(['' => 'Seleccione Estudiante'])->concat($estudiantes), $recaudo->servicioestudiante->estudiante->id, ['class' =>'form-control']) !!}
+				@if(!empty($recaudo))
+					{!! Form::select('estudiante_id', collect(['' => 'Seleccione Estudiante'])->concat($estudiantes), $recaudo->servicioestudiante->estudiante->id, ['class' =>'form-control']) !!}
+				@else
+					{!! Form::select('estudiante_id', collect(['' => 'Seleccione Estudiante'])->concat($estudiantes), null, ['class' =>'form-control']) !!}
+				@endif				
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
