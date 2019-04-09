@@ -41,6 +41,14 @@ class Colaborador extends Model
 		'telefono_contacto_emergencia' => 'required'
 	];
 	
+	protected $appends = [
+		'full_name' => '',
+	];
+
+	public function getFullNameAttribute() {
+    	return $this->nombre . " " . $this->apellido;
+	}
+
 	public function tipoDocumento() {
 		return $this->belongsTo('Artemoc\TipoDocumento');
 	}
@@ -53,6 +61,10 @@ class Colaborador extends Model
 		return $this->belongsTo('Artemoc\EPS');
 	}
 	
+	public function recaudo() {
+		return $this->hasMany('Artemoc\Recaudo');
+	}
+
 	public function validate()
 	{
 		$v = \Validator::make($this->attributes, $this->rules);
