@@ -160,7 +160,6 @@ class ColaboradorController extends Controller
                 ->withInput(Input::except('password'));
         } else {
             // store
-            $colaborador = new Colaborador;
             $colaborador->nombre = Request::get('nombre');
             $colaborador->apellido = Request::get('apellido');
             $colaborador->tipo_documento_id = Request::get('tipo_documento_id');
