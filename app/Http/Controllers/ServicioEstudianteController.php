@@ -25,8 +25,9 @@ class ServicioEstudianteController extends Controller
         // get the estudiante
         $estudiante = Estudiante::find($estudianteId);
 
-        $serviciosestudiantes = ServicioEstudiante::where('estado', 'A')
-                                                    ->simplePaginate(10);
+        $serviciosestudiantes = ServicioEstudiante::where('estudiante_id', $estudianteId)
+                                ->where('estado', 'A')
+                                ->simplePaginate(10);
         return view('serviciosestudiantes.index')
                 ->with('serviciosestudiantes', $serviciosestudiantes)
                 ->with('estudiante', $estudiante);
@@ -58,8 +59,8 @@ class ServicioEstudianteController extends Controller
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'fecha_inicio' => 'required',
-            'fecha_fin' => 'required',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'date',
             'valor_sin_descuento' => 'required|numeric',
             'descuento' => 'nullable|numeric',
             'valor_con_descuento' => 'nullable|numeric',
@@ -79,7 +80,9 @@ class ServicioEstudianteController extends Controller
             // store
             $servicioestudiante = new ServicioEstudiante;
             $servicioestudiante->fecha_inicio = Carbon::parse(Request::get('fecha_inicio'));
-            $servicioestudiante->fecha_fin = Carbon::parse(Request::get('fecha_fin'));
+            if($servicioestudiante->fecha_fin) {
+                $servicioestudiante->fecha_fin = Carbon::parse(Request::get('fecha_fin'));
+            }
             $servicioestudiante->valor_sin_descuento = Request::get('valor_sin_descuento');
             $servicioestudiante->descuento = Request::get('descuento');
             $servicioestudiante->valor_con_descuento = Request::get('valor_con_descuento');
@@ -92,7 +95,7 @@ class ServicioEstudianteController extends Controller
             $servicioestudiante->save();
 
             // redirect
-            Session::flash('message', 'Servicio registrado a estudiante !');
+            Session::flash('message', 'Servicio registrado a estudiante!');
             return redirect()->action('ServicioEstudianteController@index', ['estudianteId' => $estudianteId]);
         }
     }
@@ -111,6 +114,69 @@ class ServicioEstudianteController extends Controller
         // show the view and pass the servicioestudiante to it
         return View::make('serviciosestudiantes.show')
                     ->with('servicioestudiante', $servicioestudiante);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Artemoc\ServicioEstudiante  $servicioestudiante
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(ServicioEstudiante $servicioestudiante)
+    {
+        // show the edit form and pass the acudiente
+        return View::make('serviciosestudiantes.edit')
+                    ->with('servicioestudiante', $servicioestudiante);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Artemoc\ServicioEstudiante  $servicioestudiante
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, ServicioEstudiante $servicioestudiante)
+    {
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'date',
+            'valor_sin_descuento' => 'required|numeric',
+            'descuento' => 'nullable|numeric',
+            'valor_con_descuento' => 'nullable|numeric',
+            'servicio_id' => 'required',
+            'hora_inicio' => 'required',
+            'hora_fin' => 'required',
+            'dias' => 'required'
+        );
+        $validator = Validator::make(Request::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('serviciosestudiantes/' . $servicioestudiante->id . '/edit')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $servicioestudiante->fecha_inicio = Carbon::parse(Request::get('fecha_inicio'));
+            if(Request::get('fecha_fin')) {
+                $servicioestudiante->fecha_fin = Carbon::parse(Request::get('fecha_fin'));
+            }
+            $servicioestudiante->valor_sin_descuento = Request::get('valor_sin_descuento');
+            $servicioestudiante->descuento = Request::get('descuento');
+            $servicioestudiante->valor_con_descuento = Request::get('valor_con_descuento');
+            $servicioestudiante->servicio_id = Request::get('servicio_id');
+            $servicioestudiante->estudiante_id = $servicioestudiante->estudiante->id;
+            $servicioestudiante->hora_inicio = Carbon::createFromTimeString(Request::get('hora_inicio'), 'UTC')->toTimeString();
+            $servicioestudiante->hora_fin = Carbon::createFromTimeString(Request::get('hora_fin'), 'UTC')->toTimeString();
+            $servicioestudiante->dias = implode(',', Request::get('dias'));
+            $servicioestudiante->save();
+
+            // redirect
+            Session::flash('message', 'Servicio actualizado a estudiante!');
+            return Redirect::to('serviciosestudiantes/' . $servicioestudiante->estudiante->id);
+        }
     }
 
     /**
