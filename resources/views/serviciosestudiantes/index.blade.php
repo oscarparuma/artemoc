@@ -63,7 +63,7 @@
 
 									<!-- edit this servicioestudiante (uses the edit method found at GET /serviciosestudiantes/{id}/edit -->
 									<div class="col-md-4 form-controls">
-										<a class="btn btn-small btn-info" href="{{ URL::to('serviciosestudiantes/servicio/' . $servicioestudiante->id . '/edit') }}">Editar</a>
+										<a class="btn btn-small btn-info" href="{{ URL::to('serviciosestudiantes/' . $servicioestudiante->id . '/edit') }}">Editar</a>
 									</div>
 
 									<!-- inactivate the servicioestudiante (uses the inactivate method found at PATCH /serviciosestudiantes/{id}/inactivate -->
