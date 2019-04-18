@@ -50,6 +50,10 @@ class ServicioEstudiante extends Model
 	}
 
 	/**
+	 * Retorna true si el día que recibe como parámetro se encuentra
+	 * dentro de los días en los que se hace uso del servicio.
+	 * 
+	 * @param String $dia
 	 * @return boolean $diaSeleccionado
 	 */
 	public function isDiaSeleccionado($dia) {
