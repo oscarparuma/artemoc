@@ -60,7 +60,7 @@ class ServicioEstudianteController extends Controller
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'date',
+            'fecha_fin' => 'nullable|date',
             'valor_sin_descuento' => 'required|numeric',
             'descuento' => 'nullable|numeric',
             'valor_con_descuento' => 'nullable|numeric',
@@ -142,7 +142,7 @@ class ServicioEstudianteController extends Controller
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'date',
+            'fecha_fin' => 'nullable|date',
             'valor_sin_descuento' => 'required|numeric',
             'descuento' => 'nullable|numeric',
             'valor_con_descuento' => 'nullable|numeric',
