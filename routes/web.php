@@ -56,3 +56,8 @@ Route::resource('egresos', 'EgresoController');
 
 // Retorna los municipios asociados al departamento id
 Route::get('findMunicipioWithDepartamentoID/{id}','EstudianteController@findMunicipioWithDepartamentoID');
+
+// Authentication
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
