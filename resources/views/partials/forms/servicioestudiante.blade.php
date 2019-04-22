@@ -2,10 +2,18 @@
 
 	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="{{ URL::to('serviciosestudiantes/' . $servicioestudiante->estudiante->id) }}">Servicios para el estudiante</a>
+			@if(!empty($servicioestudiante))
+				<a class="navbar-brand" href="{{ URL::to('serviciosestudiantes/' . $servicioestudiante->estudiante->id) }}">Servicios para el estudiante</a>
+			@else
+				<a class="navbar-brand" href="{{ URL::to('serviciosestudiantes/' . $estudiante->id) }}">Servicios para el estudiante</a>
+			@endif
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="{{ URL::to('serviciosestudiantes/' . $servicioestudiante->estudiante->id) }}">Ver servicios registrados para el estudiante</a></li>
+			@if(!empty($servicioestudiante))
+				<li><a href="{{ URL::to('serviciosestudiantes/' . $servicioestudiante->estudiante->id) }}">Ver servicios registrados para el estudiante</a></li>
+			@else
+				<li><a href="{{ URL::to('serviciosestudiantes/' . $estudiante->id) }}">Ver servicios registrados para el estudiante</a></li>
+			@endif
 			<li><a href="{{ URL::to('estudiantes/create') }}">Registrar estudiante</a>
 		</ul>
 	</nav>
