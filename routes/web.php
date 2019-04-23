@@ -23,6 +23,7 @@ Route::patch('acudientes/{id}/inactivate', 'AcudienteController@inactivate');
 Route::get('acudientes/estudiante/{estudianteId}', 'AcudienteController@acudienteEstudianteIndex');
 Route::get('acudientes/estudiante/{estudianteId}/create', 'AcudienteController@create');
 Route::post('acudientes/estudiante/{estudianteId}', 'AcudienteController@store');
+Route::get('acudientes/{acudiente}/edit', 'AcudienteController@edit');
 
 // Servicios
 Route::resource('servicios', 'ServicioController');
@@ -61,3 +62,7 @@ Route::get('findMunicipioWithDepartamentoID/{id}','EstudianteController@findMuni
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Dashboard
+Route::get('dashboard', 'HomeController@dashboard');
+Route::get('my-users', 'HomeController@myUsers');
