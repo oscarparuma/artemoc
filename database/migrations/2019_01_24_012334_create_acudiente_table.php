@@ -23,7 +23,7 @@ class CreateAcudienteTable extends Migration
 			$table->string('direccion_residencia', 100);
             $table->string('direccion_oficina', 100);
             $table->string('telefono', 45);
-            $table->integer('celular');
+            $table->bigInteger('celular');
             $table->string('ocupacion', 50);
             $table->string('correo_electronico', 45);
 			$table->integer('nivel_escolaridad_id')->unsigned();

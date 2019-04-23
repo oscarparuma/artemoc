@@ -36,7 +36,15 @@ class Estudiante extends Model {
 		'temas_interes' => 'required',
 		'grupo_sanguineo' => 'required'
 	];
-	
+
+	protected $appends = [
+		'full_name' => '',
+	];
+
+	public function getFullNameAttribute() {
+    	return $this->nombre . " " . $this->apellido;
+	}
+
 	public function tipoDocumento() {
 		return $this->belongsTo('Artemoc\TipoDocumento');
 	}

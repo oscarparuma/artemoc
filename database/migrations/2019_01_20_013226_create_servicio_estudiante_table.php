@@ -16,7 +16,7 @@ class CreateServicioEstudianteTable extends Migration
         Schema::create('servicio_estudiante', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('fecha_fin')->nullable();
             $table->integer('valor_sin_descuento');
             $table->integer('descuento')->nullable();
             $table->integer('valor_con_descuento')->nullable();

@@ -167,7 +167,6 @@ class EstudianteController extends Controller
                 ->withInput(Input::except('password'));
         } else {
             // store
-            $estudiante = new Estudiante;
             $estudiante->nombre = Request::get('nombre');
             $estudiante->apellido = Request::get('apellido');
             $estudiante->tipo_documento_id = Request::get('tipo_documento_id');

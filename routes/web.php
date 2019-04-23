@@ -11,85 +11,7 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
 Route::get('/', 'WelcomeController@index');
-
-/*Route::get('/', function() {
-	return redirect('estudiantes');
-});*/
-
-//Route::get('home', 'HomeController@index');
-
-/*Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);*/
-
-/*Route::get('estudiantes/{id}', function($id) {
-	return sprintf('Estudiante #%s', $id);
-})->where('id', '[0-9]+');*/
-
-/*Route::get('estudiantes', function() {
-	return 'All estudiantes';
-});*/
-
-Route::get('about', function() {
-	return view('about')->with('numero_estudiantes', 40);
-});
-
-/*Route::get('estudiantes', function() {
-	$estudiantes = Artemoc\Estudiante::all();
-	return view('estudiantes.index')->with('estudiantes', $estudiantes);
-});*/
-
-/*Route::get('estudiantes/colegios/{nombre}', function($nombre) {
-	$colegio = Artemoc\Colegio::with('estudiantes')
-		->whereNombre($nombre)
-		->first();
-	return view('estudiantes.index')
-		->with('colegio', $colegio)
-		->with('estudiantes', $colegio->estudiantes);
-});*/
-
-/*Route::get('estudiantes/{id}', function($id) {
-	$estudiante = Artemoc\Estudiante::find($id);
-	return view('estudiantes.show')->with('estudiante', $estudiante);
-});*/
-
-/*Route::get('estudiantes/{estudiante}', function(Artemoc\Estudiante $estudiante) {
-	return view('estudiantes.show')->with('estudiante', $estudiante);
-});*/
-
-/*Route::get('estudiantes/create', function() {
-	return view('estudiantes.create');
-});*/
-
-/*Route::post('estudiantes', function() {
-	$estudiante = Artemoc\Estudiante::create(Input::all());
-	return redirect('estudiantes/'.$estudiante->id)
-		->withSuccess('Se ha registrado al estudiante.');
-});*/
-
-/*Route::get('estudiantes/{estudiante}/edit', function(Artemoc\Estudiante $estudiante) {
-	return view('estudiantes.edit')->with('estudiante', $estudiante);
-});
-
-Route::put('estudiantes/{estudiante}', function(Artemoc\Estudiante $estudiante) {
-	$estudiante->update(Input::all());
-	return redirect('estudiantes/'.$estudiante->id)
-		->withSuccess('Estudiante actualizado.');
-});
-
-Route::delete('estudiantes/{estudiante}', function(Artemoc\Estudiante $estudiante) {
-	$estudiante->delete();
-	return redirect('estudiantes')
-		->withSuccess('Estudiante borrado.');
-});*/
-
-//Route::get('estudiante/{id}', ['uses' => 'EstudianteController@show']);
 
 // Estudiantes
 Route::resource('estudiantes', 'EstudianteController');
@@ -101,6 +23,7 @@ Route::patch('acudientes/{id}/inactivate', 'AcudienteController@inactivate');
 Route::get('acudientes/estudiante/{estudianteId}', 'AcudienteController@acudienteEstudianteIndex');
 Route::get('acudientes/estudiante/{estudianteId}/create', 'AcudienteController@create');
 Route::post('acudientes/estudiante/{estudianteId}', 'AcudienteController@store');
+Route::get('acudientes/{acudiente}/edit', 'AcudienteController@edit');
 
 // Servicios
 Route::resource('servicios', 'ServicioController');
@@ -110,8 +33,36 @@ Route::get('serviciosestudiantes/{estudianteId}', 'ServicioEstudianteController@
 Route::get('serviciosestudiantes/{estudianteId}/create', 'ServicioEstudianteController@create');
 Route::post('serviciosestudiantes/{estudianteId}', 'ServicioEstudianteController@store');
 Route::get('serviciosestudiantes/servicio/{id}', 'ServicioEstudianteController@show');
-Route::get('serviciosestudiantes/{id}/edit', 'ServicioEstudianteController@edit');
+Route::get('serviciosestudiantes/{servicioestudiante}/edit', 'ServicioEstudianteController@edit');
+Route::put('serviciosestudiantes/{servicioestudiante}', 'ServicioEstudianteController@update');
 Route::patch('serviciosestudiantes/{id}/inactivate', 'ServicioEstudianteController@inactivate');
+Route::get('serviciosestudiantes/getservicios/{estudianteId}', 'ServicioEstudianteController@findServiciosWithEstudianteID');
+
+// Colaboradores
+Route::resource('colaboradores', 'ColaboradorController');
+
+// Contratos Colaboradores
+Route::get('contratos/colaborador/{colaboradorId}', 'ContratoColaboradorController@index');
+Route::get('contratos/colaborador/{colaboradorId}/create', 'ContratoColaboradorController@create');
+Route::post('contratos/colaborador/{colaboradorId}', 'ContratoColaboradorController@store');
+Route::get('contratos/colaborador/{id}', 'ContratoColaboradorController@show');
+Route::get('contratos/colaborador/{id}/edit', 'ContratoColaboradorController@edit');
+Route::patch('contratos/colaborador/{id}/inactivate', 'ContratoColaboradorController@inactivate');
+
+// Recaudo
+Route::resource('recaudos', 'RecaudoController');
+
+// Egreso
+Route::resource('egresos', 'EgresoController');
 
 // Retorna los municipios asociados al departamento id
 Route::get('findMunicipioWithDepartamentoID/{id}','EstudianteController@findMunicipioWithDepartamentoID');
+
+// Authentication
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Dashboard
+Route::get('dashboard', 'HomeController@dashboard');
+Route::get('my-users', 'HomeController@myUsers');

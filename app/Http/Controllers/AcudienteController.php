@@ -159,7 +159,6 @@ class AcudienteController extends Controller
                 ->withInput(Input::except('password'));
         } else {
             // store
-            $acudiente = Acudiente::find($id);
             $acudiente->nombre = Request::get('nombre');
             $acudiente->apellido = Request::get('apellido');
             $acudiente->tipo_documento_id = Request::get('tipo_documento_id');

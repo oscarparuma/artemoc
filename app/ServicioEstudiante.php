@@ -25,8 +25,8 @@ class ServicioEstudiante extends Model
 	];
 
 	private $rules = [
-		'fecha_inicio' => 'required',
-		'fecha_fin' => 'required',
+		'fecha_inicio' => 'required|date',
+		'fecha_fin' => 'date',
         'valor_sin_descuento' => 'required|numeric',
         'descuento' => 'nullable|numeric',
         'valor_con_descuento' => 'nullable|numeric',
@@ -37,6 +37,31 @@ class ServicioEstudiante extends Model
 		'dias' => 'required'
 	];
 	
+	protected $appends = [
+		'diasSeleccionados' => '',
+	];
+
+	/**
+	 * @return Array $diasSeleccionados
+	 */
+	public function getDiasSeleccionadosAttribute() {
+		$diasSeleccionados = explode(',', $this->dias);
+    	return $diasSeleccionados;
+	}
+
+	/**
+	 * Retorna true si el día que recibe como parámetro se encuentra
+	 * dentro de los días en los que se hace uso del servicio.
+	 * 
+	 * @param String $dia
+	 * @return boolean $diaSeleccionado
+	 */
+	public function isDiaSeleccionado($dia) {
+		$diaSeleccionado = false;
+		$diaSeleccionado = in_array($dia, $this->diasSeleccionados);
+    	return $diaSeleccionado;
+	}
+
 	public function estudiante() {
 		return $this->belongsTo('Artemoc\Estudiante');
 	}
@@ -45,6 +70,10 @@ class ServicioEstudiante extends Model
 		return $this->belongsTo('Artemoc\Servicio');
 	}
 	
+	public function recaudo() {
+		return $this->hasMany('Artemoc\Recaudo');
+	}
+
 	public function validate()
 	{
 		$v = Validator::make($this->attributes, $this->rules);
