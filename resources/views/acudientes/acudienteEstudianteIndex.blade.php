@@ -1,12 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 
 @section('header')
-<div>
-	<a href="{{ url('estudiantes') }}">Regresar</a>
-</div>
-<div>
-	<h2>Acudientes de {{ $estudiante->nombre . ' ' . $estudiante->apellido }}</h2>
-</div>
+	<div>
+		<h2>Acudientes de {{ $estudiante->nombre . ' ' . $estudiante->apellido }}</h2>
+	</div>
 @stop
 @section('content')
 
@@ -56,23 +53,27 @@
 							<!-- we will also add show, edit, and delete buttons -->
 							<td class="col-md-4 form-group">
 
-								<div class="btn-group">
-									<!-- show the acudiente (uses the show method found at GET /acudientes/{id} -->
-									<div class="col-md-4 form-controls">
-										<a class="btn btn-small btn-warning" href="{{ URL::to('acudientes/' . $acudiente->id) }}">Ver</a>
-									</div>
+								<div class="btn-group-vertical">
+									<div class="btn-group">
+										<!-- show the acudiente (uses the show method found at GET /acudientes/{id} -->
+										<div class="col-md-4 form-controls">
+											<a class="btn btn-small btn-warning" href="{{ URL::to('acudientes/' . $acudiente->id) }}">Ver</a>
+										</div>
 
-									<!-- edit this acudiente (uses the edit method found at GET /acudientes/{id}/edit -->
-									<div class="col-md-4 form-controls">
-										<a class="btn btn-small btn-info" href="{{ URL::to('acudientes/' . $acudiente->id . '/edit') }}">Editar</a>
+										<!-- edit this acudiente (uses the edit method found at GET /acudientes/{id}/edit -->
+										<div class="col-md-4 form-controls">
+											<a class="btn btn-small btn-info" href="{{ URL::to('acudientes/' . $acudiente->id . '/edit') }}">Editar</a>
+										</div>
 									</div>
-
-									<!-- inactivate the acudiente (uses the inactivate method found at PATCH /acudientes/{id}/inactivate -->
-									<div class="col-md-4 form-controls">
-										{{ Form::open(array('url' => 'acudientes/' . $acudiente->id . '/inactivate', 'class' => 'pull-right')) }}
-											{{ Form::hidden('_method', 'PATCH') }}
-											{{ Form::submit('Inactivar', array('class' => 'btn btn-small btn-danger')) }}
-										{{ Form::close() }}
+									<div>&nbsp;</div>
+									<div class="btn-group">
+										<!-- inactivate the acudiente (uses the inactivate method found at PATCH /acudientes/{id}/inactivate -->
+										<div class="col-md-4 form-controls">
+											{{ Form::open(array('url' => 'acudientes/' . $acudiente->id . '/inactivate', 'class' => 'pull-right')) }}
+												{{ Form::hidden('_method', 'PATCH') }}
+												{{ Form::submit('Inactivar', array('class' => 'btn btn-small btn-danger')) }}
+											{{ Form::close() }}
+										</div>
 									</div>
 								</div>
 

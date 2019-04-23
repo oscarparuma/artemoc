@@ -8,6 +8,7 @@ use Artemoc\Estudiante;
 use Validator;
 use Request;
 use Session;
+use View;
 
 class AcudienteController extends Controller
 {
@@ -119,9 +120,6 @@ class AcudienteController extends Controller
      */
     public function edit(Acudiente $acudiente)
     {
-        // get the acudiente
-        $acudiente = Acudiente::find($id);
-
         // show the edit form and pass the acudiente
         return View::make('acudientes.edit')
                     ->with('acudiente', $acudiente);

@@ -10,8 +10,6 @@
 		</ul>
 	</nav>
 
-	<h1>Registrar acudiente para {{ $estudiante->nombre . ' ' . $estudiante->apellido }}</h1>
-
 	<!-- if there are creation errors, they will show here -->
 	@if($errors->any())
 		<div class="alert alert-danger">
