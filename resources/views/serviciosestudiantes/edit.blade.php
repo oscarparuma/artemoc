@@ -1,6 +1,6 @@
-@extends('layouts.theme.default')
+@extends('layouts.master')
 @section('header')
-	<h2>Modificar servicio del estudiante {{ $servicioestudiante->estudiante->nombre .' '. $servicioestudiante->estudiante->apellido }}</h2>
+	<h2>Modificar servicio del estudiante</h2>
 @stop
 @section('content')
 	{!! Form::model($servicioestudiante, [

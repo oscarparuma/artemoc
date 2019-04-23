@@ -1,6 +1,11 @@
-@extends('layouts.theme.default')
+@extends('layouts.master')
 @section('header')
-	<div></div>
+	<div>
+		<a href="{{ url('/estudiantes') }}">Regresar</a>
+	</div>
+	<div>
+		<h2>Registrar estudiante</h2>
+	</div>
 @stop
 @section('content')
 {!! Form::open(['url' => 'estudiantes']) !!}

@@ -34,6 +34,24 @@
 				{!! Form::select('servicio_id', $servicios, null, ['class' =>'form-control']) !!}
 			</div>
 		</div>
+		<div class="col-md-6 form-group">
+			{!! Form::label('fecha_inicio', 'Fecha inicio', ['class'=>'required']) !!}
+			<div class='input-group date'>
+				{!! Form::text('fecha_inicio', null, ['class' => 'form-control timepicker']) !!}
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+			</div>
+		</div>
+		<div class="col-md-6 form-group">
+			{!! Form::label('fecha_fin', 'Fecha fin', ['class'=>'']) !!}
+			<div class="input-group date">
+				{!! Form::text('fecha_fin', null, ['class' => 'form-control timepicker']) !!}
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+			</div>
+		</div>
 		<div class="col-md-4 form-group">
 			{!! Form::label('valor_sin_descuento', 'Valor sin descuento', ['class'=>'required']) !!}
 			<div class="form-controls">
@@ -52,163 +70,94 @@
 				{!! Form::text('valor_con_descuento', null, ['class' => 'form-control', 'readonly']) !!}
 			</div>
 		</div>
-
-		<div class="col-md-6 form-group">
-			{!! Form::label('fecha_inicio', 'Fecha inicio', ['class'=>'required']) !!}
-			<div class="input-group">
-				<div class='input-group-prepend date'>
-					<span class="input-group-text">
-						<span class="fas fa-fw fa-calendar-alt"></i>
-					</span>
-				</div>
-				{!! Form::text('fecha_inicio', null, ['class' => 'form-control timepicker']) !!}
-			</div>
-		</div>
-		<div class="col-md-6 form-group">
-			{!! Form::label('fecha_fin', 'Fecha fin', ['class'=>'']) !!}
-			<div class="input-group">
-				<div class="input-group-prepend date">
-					<span class="input-group-text">
-						<span class="fas fa-fw fa-calendar-alt"></span>
-					</span>
-				</div>
-				{!! Form::text('fecha_fin', null, ['class' => 'form-control timepicker']) !!}
-			</div>
-		</div>
-
 		<div class="col-md-6 form-group">
 			{!! Form::label('hora_inicio', 'Hora inicio', ['class'=>'required']) !!}
-			<div class="input-group">
-				<div class='input-group-prepend date'>
-					<span class="input-group-text">
-						<span class="fas fa-fw fa-clock"></span>
-					</span>
-				</div>
+			<div class='input-group date'>
 				{!! Form::text('hora_inicio', null, ['class' => 'form-control timepicker']) !!}
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-time"></span>
+				</span>
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
 			{!! Form::label('hora_fin', 'Hora fin', ['class'=>'required']) !!}
-			<div class="input-group">
-				<div class="input-group-prepend date">
-					<span class="input-group-text">
-						<span class="fas fa-fw fa-clock"></span>
-					</span>
-				</div>
+			<div class="input-group date">
 				{!! Form::text('hora_fin', null, ['class' => 'form-control timepicker']) !!}
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-time"></span>
+				</span>
 			</div>
 		</div>
-		<div class="col-md-12 input-group">
+		<div class="col-md-12 form-group">
 			<legend>Días</legend>
-
-			<div class="col-md-1 form-group"></div>
-
 			<div class="col-md-2 form-group">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<div class="input-group-text">
-							@if(!empty($servicioestudiante))
-								{!! Form::checkbox('dias[]', 'L', $servicioestudiante->isDiaSeleccionado('L')) !!}
-							@else
-								{!! Form::checkbox('dias[]', 'L', false); !!}
-							@endif
-						</div>
-					</div>
-					{!! Form::label('Lunes', null, ['class' => 'form-control']) !!}
+				{!! Form::label('Lunes') !!}
+				<div class="form-controls">
+					@if(!empty($servicioestudiante))
+						{!! Form::checkbox('dias[]', 'L', $servicioestudiante->isDiaSeleccionado('L')) !!}
+					@else
+						{!! Form::checkbox('dias[]', 'L', false); !!}
+					@endif
 				</div>
 			</div>
-			
 			<div class="col-md-2 form-group">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<div class="input-group-text">
-							@if(!empty($servicioestudiante))
-								{!! Form::checkbox('dias[]', 'M', $servicioestudiante->isDiaSeleccionado('M')) !!}
-							@else
-								{!! Form::checkbox('dias[]', 'M', false); !!}
-							@endif
-						</div>
-					</div>
-					{!! Form::label('Martes', null, ['class' => 'form-control']) !!}
+				{!! Form::label('Martes') !!}
+				<div class="form-controls">
+					@if(!empty($servicioestudiante))
+						{!! Form::checkbox('dias[]', 'M', $servicioestudiante->isDiaSeleccionado('M')) !!}
+					@else
+						{!! Form::checkbox('dias[]', 'M', false); !!}
+					@endif
 				</div>
 			</div>
-
 			<div class="col-md-2 form-group">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<div class="input-group-text">
-							@if(!empty($servicioestudiante))
-								{!! Form::checkbox('dias[]', 'Mi', $servicioestudiante->isDiaSeleccionado('Mi')) !!}
-							@else
-								{!! Form::checkbox('dias[]', 'Mi', false); !!}
-							@endif
-						</div>
-					</div>
-					{!! Form::label('Miércoles', null, ['class' => 'form-control']) !!}
+				{!! Form::label('Miércoles') !!}
+				<div class="form-controls">
+					@if(!empty($servicioestudiante))
+						{!! Form::checkbox('dias[]', 'Mi', $servicioestudiante->isDiaSeleccionado('Mi')) !!}
+					@else
+						{!! Form::checkbox('dias[]', 'Mi', false); !!}
+					@endif
 				</div>
 			</div>
-
 			<div class="col-md-2 form-group">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<div class="input-group-text">
-							@if(!empty($servicioestudiante))
-								{!! Form::checkbox('dias[]', 'J', $servicioestudiante->isDiaSeleccionado('J')) !!}
-							@else
-								{!! Form::checkbox('dias[]', 'J', false); !!}
-							@endif
-						</div>
-					</div>
-					{!! Form::label('Jueves', null, ['class' => 'form-control']) !!}
+				{!! Form::label('Jueves') !!}
+				<div class="form-controls">
+					@if(!empty($servicioestudiante))
+						{!! Form::checkbox('dias[]', 'J', $servicioestudiante->isDiaSeleccionado('J')) !!}
+					@else
+						{!! Form::checkbox('dias[]', 'J', false); !!}
+					@endif
 				</div>
 			</div>
-
 			<div class="col-md-2 form-group">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<div class="input-group-text">
-							@if(!empty($servicioestudiante))
-								{!! Form::checkbox('dias[]', 'V', $servicioestudiante->isDiaSeleccionado('V')) !!}
-							@else
-								{!! Form::checkbox('dias[]', 'V', false); !!}
-							@endif
-						</div>
-					</div>
-					{!! Form::label('Viernes', null, ['class' => 'form-control']) !!}
+				{!! Form::label('Viernes') !!}
+				<div class="form-controls">
+					@if(!empty($servicioestudiante))
+						{!! Form::checkbox('dias[]', 'V', $servicioestudiante->isDiaSeleccionado('V')) !!}
+					@else
+						{!! Form::checkbox('dias[]', 'V', false); !!}
+					@endif
 				</div>
 			</div>
-
-			<div class="col-md-1 form-group"></div>
-			
-			<div class="col-md-1 form-group"></div>
-
 			<div class="col-md-2 form-group">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<div class="input-group-text">
-							@if(!empty($servicioestudiante))
-								{!! Form::checkbox('dias[]', 'S', $servicioestudiante->isDiaSeleccionado('S')) !!}
-							@else
-								{!! Form::checkbox('dias[]', 'S', false); !!}
-							@endif
-						</div>
-					</div>
-					{!! Form::label('Sábado', null, ['class' => 'form-control']) !!}
+				{!! Form::label('Sábado') !!}
+				<div class="form-controls">
+					@if(!empty($servicioestudiante))
+						{!! Form::checkbox('dias[]', 'S', $servicioestudiante->isDiaSeleccionado('S')) !!}
+					@else
+						{!! Form::checkbox('dias[]', 'S', false); !!}
+					@endif
 				</div>
 			</div>
-
 			<div class="col-md-2 form-group">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<div class="input-group-text">
-							@if(!empty($servicioestudiante))
-								{!! Form::checkbox('dias[]', 'D', $servicioestudiante->isDiaSeleccionado('D')) !!}
-							@else
-								{!! Form::checkbox('dias[]', 'D', false); !!}
-							@endif
-						</div>
-					</div>
-					{!! Form::label('Domingo', null, ['class' => 'form-control']) !!}
+				{!! Form::label('Domingo') !!}
+				<div class="form-controls">
+					@if(!empty($servicioestudiante))
+						{!! Form::checkbox('dias[]', 'D', $servicioestudiante->isDiaSeleccionado('D')) !!}
+					@else
+						{!! Form::checkbox('dias[]', 'D', false); !!}
+					@endif
 				</div>
 			</div>
 		</div>
