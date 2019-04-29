@@ -1,9 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 
 @section('header')
-<div>
-	<a href="{{ url('/') }}">Regresar</a>
-</div>
 <div>
 	<h2>Estudiantes</h2>
 </div>
@@ -27,7 +24,7 @@
 
 		@if ($estudiantes->count() > 0)
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered">
+				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th scope="col">ID</td>

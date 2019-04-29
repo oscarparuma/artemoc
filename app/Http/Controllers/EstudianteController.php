@@ -123,9 +123,6 @@ class EstudianteController extends Controller
      */
     public function edit(Estudiante $estudiante)
     {
-        // get the estudiante
-        $estudiante = Estudiante::find($id);
-
         // show the edit form and pass the estudiante
         return View::make('estudiantes.edit')
             ->with('estudiante', $estudiante);
