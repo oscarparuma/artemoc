@@ -1,12 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 
 @section('header')
-<div>
-	<a href="{{ url('/colaboradores') }}">Regresar</a>
-</div>
-<div>
-	<h2>Contratos para {{ $colaborador->nombre . ' ' . $colaborador->apellido }}</h2>
-</div>
+	<div>
+		<h2>Contratos para {{ $colaborador->nombre . ' ' . $colaborador->apellido }}</h2>
+	</div>
 @stop
 @section('content')
 

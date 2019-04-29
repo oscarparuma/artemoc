@@ -2,10 +2,10 @@
 
 	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="{{ URL::to('contratoscolaboradores') }}">Contratos para el colaborador</a>
+			<a class="navbar-brand" href="{{ URL::to('contratos/colaborador/' . $colaborador->id) }}">Contratos para el colaborador</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="{{ URL::to('contratoscolaboradores') }}">Ver contratos registrados para el colaborador</a></li>
+			<li><a href="{{ URL::to('contratos/colaborador/' . $colaborador->id) }}">Ver contratos registrados para el colaborador</a></li>
 			<li><a href="{{ URL::to('colaboradores/create') }}">Registrar colaborador</a>
 		</ul>
 	</nav>
@@ -40,85 +40,126 @@
 		</div>
 		<div class="col-md-6 form-group">
 			{!! Form::label('fecha_inicio', 'Fecha inicio', ['class'=>'required']) !!}
-			<div class='input-group date'>
+			<div class="input-group">
+				<div class='input-group-prepend date'>
+					<span class="input-group-text">
+						<span class="fas fa-fw fa-calendar-alt"></span>
+					</span>
+				</div>
 				{!! Form::text('fecha_inicio', null, ['class' => 'form-control timepicker']) !!}
-				<span class="input-group-addon">
-					<span class="glyphicon glyphicon-calendar"></span>
-				</span>
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
 			{!! Form::label('fecha_fin', 'Fecha fin', ['class'=>'required']) !!}
-			<div class="input-group date">
+			<div class="input-group">
+				<div class="input-group-prepend date">
+					<span class="input-group-text">
+						<span class="fas fa-fw fa-calendar-alt"></span>
+					</span>
+				</div>
 				{!! Form::text('fecha_fin', null, ['class' => 'form-control timepicker']) !!}
-				<span class="input-group-addon">
-					<span class="glyphicon glyphicon-calendar"></span>
-				</span>
-			</div>
-		</div>
-
-		<div class="col-md-12 form-group">
-			<legend>Días</legend>
-			<div class="col-md-2 form-group">
-				{!! Form::label('Lunes') !!}
-				<div class="form-controls">
-					{!! Form::checkbox('dias[]', 'L', false); !!}
-				</div>
-			</div>
-			<div class="col-md-2 form-group">
-				{!! Form::label('Martes') !!}
-				<div class="form-controls">
-					{!! Form::checkbox('dias[]', 'M', false); !!} 
-				</div>
-			</div>
-			<div class="col-md-2 form-group">
-				{!! Form::label('Miércoles') !!}
-				<div class="form-controls">
-					{!! Form::checkbox('dias[]', 'Mi', false); !!} 
-				</div>
-			</div>
-			<div class="col-md-2 form-group">
-				{!! Form::label('Jueves') !!}
-				<div class="form-controls">
-					{!! Form::checkbox('dias[]', 'J', false); !!} 
-				</div>
-			</div>
-			<div class="col-md-2 form-group">
-				{!! Form::label('Viernes') !!}
-				<div class="form-controls">
-					{!! Form::checkbox('dias[]', 'V', false); !!} 
-				</div>
-			</div>
-			<div class="col-md-2 form-group">
-				{!! Form::label('Sábado') !!}
-				<div class="form-controls">
-					{!! Form::checkbox('dias[]', 'S', false); !!} 
-				</div>
-			</div>
-			<div class="col-md-2 form-group">
-				{!! Form::label('Domingo') !!}
-				<div class="form-controls">
-					{!! Form::checkbox('dias[]', 'D', false); !!} 
-				</div>
 			</div>
 		</div>
 
 		<div class="col-md-6 form-group">
 			{!! Form::label('hora_inicio', 'Hora inicio', ['class'=>'required']) !!}
-			<div class='input-group date'>
+			<div class="input-group">
+				<div class='input-group-prepend date'>
+					<span class="input-group-text">
+						<span class="fas fa-fw fa-clock"></span>
+					</span>
+				</div>
 				{!! Form::text('hora_inicio', null, ['class' => 'form-control timepicker']) !!}
-				<span class="input-group-addon">
-					<span class="glyphicon glyphicon-time"></span>
-				</span>
 			</div>
 		</div>
 		<div class="col-md-6 form-group">
 			{!! Form::label('hora_fin', 'Hora fin', ['class'=>'required']) !!}
-			<div class="input-group date">
+			<div class="input-group">
+				<div class="input-group-prepend date">
+					<span class="input-group-text">
+						<span class="fas fa-fw fa-clock"></span>
+					</span>
+				</div>
 				{!! Form::text('hora_fin', null, ['class' => 'form-control timepicker']) !!}
-				<span class="input-group-addon">
-					<span class="glyphicon glyphicon-time"></span>
-				</span>
+			</div>
+		</div>
+
+		<div class="col-md-12 input-group">
+			<legend>Días</legend>
+
+			<div class="col-md-1 form-group"></div>
+
+			<div class="col-md-2 form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							{!! Form::checkbox('dias[]', 'L', false); !!}
+						</div>
+					</div>
+					{!! Form::label('Lunes', null, ['class' => 'form-control']) !!}
+				</div>
+			</div>
+			<div class="col-md-2 form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							{!! Form::checkbox('dias[]', 'M', false); !!}
+						</div>
+					</div>
+					{!! Form::label('Martes', null, ['class' => 'form-control']) !!}
+				</div>
+			</div>
+			<div class="col-md-2 form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							{!! Form::checkbox('dias[]', 'Mi', false); !!}
+						</div>
+					</div>
+					{!! Form::label('Miércoles', null, ['class' => 'form-control']) !!}
+				</div>
+			</div>
+			<div class="col-md-2 form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							{!! Form::checkbox('dias[]', 'J', false); !!}
+						</div>
+					</div>
+					{!! Form::label('Jueves', null, ['class' => 'form-control']) !!}
+				</div>
+			</div>
+			<div class="col-md-2 form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							{!! Form::checkbox('dias[]', 'V', false); !!}
+						</div>
+					</div>
+					{!! Form::label('Viernes', null, ['class' => 'form-control']) !!}
+				</div>
+			</div>
+			<div class="col-md-1 form-group"></div>
+			<div class="col-md-1 form-group"></div>
+			<div class="col-md-2 form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							{!! Form::checkbox('dias[]', 'S', false); !!}
+						</div>
+					</div>
+					{!! Form::label('Sábado', null, ['class' => 'form-control']) !!}
+				</div>
+			</div>
+			<div class="col-md-2 form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							{!! Form::checkbox('dias[]', 'D', false); !!}
+						</div>
+					</div>
+					{!! Form::label('Domingo', null, ['class' => 'form-control']) !!}
+				</div>
 			</div>
 		</div>
 

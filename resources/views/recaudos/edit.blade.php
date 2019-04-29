@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 @section('header')
 	<h2>Modificar recaudo</h2>
 @stop

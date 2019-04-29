@@ -1,12 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 
 @section('header')
-<div>
-	<a href="{{ url('/') }}">Regresar</a>
-</div>
-<div>
-	<h2>Egresos</h2>
-</div>
+	<div>
+		<h2>Egresos</h2>
+	</div>
 @stop
 @section('content')
 
@@ -88,7 +85,7 @@
         @endif
         
         {{ $egresos->links() }}
-
+		<div class="col-md-12 form-group">&nbsp;</div>
 		<div>
 			<a href="{{ url('egresos/create') }}" class="btn btn-primary pull-right">Registrar egreso</a>
 		</div>

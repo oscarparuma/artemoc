@@ -1,8 +1,5 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 @section('header')
-	<div>
-		<a href="{{ url('/recaudos') }}">Regresar</a>
-	</div>
 	<div>
 		<h2>Registrar recaudo</h2>
 	</div>

@@ -1,12 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 
 @section('header')
-<div>
-	<a href="{{ url('/') }}">Regresar</a>
-</div>
-<div>
-	<h2>Servicios</h2>
-</div>
+	<div>
+		<h2>Servicios</h2>
+	</div>
 @stop
 @section('content')
 	@if ($servicios->count() > 0)
@@ -28,14 +25,6 @@
 				</tbody>
 			</table>
 		</div>
-
-		@foreach ($servicios as $servicio)
-			<div class="servicio">
-				<a href="{{ url('servicios/'.$servicio->id) }}">
-					<strong>{{ $servicio->nombre }}</strong>
-				</a>
-			</div>
-		@endforeach
 	@else
 		<p>
 			No hay servicios registrados!

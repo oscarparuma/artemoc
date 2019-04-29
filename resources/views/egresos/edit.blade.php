@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 @section('header')
 	<h2>Modificar egreso</h2>
 @stop

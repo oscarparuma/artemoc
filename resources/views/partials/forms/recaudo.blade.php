@@ -10,8 +10,6 @@
 		</ul>
 	</nav>
 
-	<h1>Registrar recaudo</h1>
-
 	<!-- if there are creation errors, they will show here -->
 	@if($errors->any())
 		<div class="alert alert-danger">
@@ -57,11 +55,13 @@
 		</div>
 		<div class="col-md-6 form-group">
 			{!! Form::label('fecha_pago', 'Fecha de pago', ['class'=>'required']) !!}
-			<div class='input-group date'>
+			<div class="input-group">
+				<div class='input-group-prepend date'>
+					<span class="input-group-text">
+						<span class="fas fa-fw fa-calendar-alt"></span>
+					</span>
+				</div>
 				{!! Form::text('fecha_pago', null, ['class' => 'form-control timepicker']) !!}
-				<span class="input-group-addon">
-					<span class="glyphicon glyphicon-calendar"></span>
-				</span>
 			</div>
 		</div>
 		<div class="col-md-6 form-group">

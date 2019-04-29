@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 @section('header')
 	<h2>Modificar colaborador</h2>
 @stop

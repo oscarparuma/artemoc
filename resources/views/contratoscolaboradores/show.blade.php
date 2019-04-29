@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.theme.default')
 
 @section('header')
 	<a href="{{ url('serviciosestudiantes/' . $servicioestudiante->estudiante->id) }}">Regresar</a>
